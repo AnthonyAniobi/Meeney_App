@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meeney_app/custom_widgets/bottom_modal.dart';
+import 'package:meeney_app/custom_widgets/custom_colors.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -10,9 +12,17 @@ class CustomAppBar extends StatelessWidget {
     return Container(height: 120, width: MediaQuery.of(context).size.width,
     
     decoration: BoxDecoration(
+      gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                normPurple,
+                darkPurple,
+              ],
+            ),
       image: DecorationImage(image: AssetImage('assets/images/app_back.png'), fit: BoxFit.cover),  
       borderRadius: BorderRadius.horizontal(left: Radius.circular(20), right: Radius.circular(20)),
-      color: Colors.purple),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,7 +39,11 @@ class CustomAppBar extends StatelessWidget {
                 SizedBox(width: 20),
                 Image.asset('assets/images/message_icon.png'),
               ],),
-              Image.asset('assets/images/user_image.png'),
+              GestureDetector(
+                onTap: (){
+                  displayModal(context);
+                },
+                child: Image.asset('assets/images/user_image.png')),
             ],),
           ),
         ],

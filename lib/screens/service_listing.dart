@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meeney_app/custom_widgets/custom_colors.dart';
 import 'package:meeney_app/custom_widgets/custom_texts.dart';
+import 'package:meeney_app/custom_widgets/display_alert_dialog.dart';
 
 class ServiceListing extends StatefulWidget {
   const ServiceListing({ Key? key }) : super(key: key);
@@ -26,25 +27,34 @@ class _ServiceListingState extends State<ServiceListing> {
                   _navTextButtons("Products", _selectedNav, 1),
                   _navTextButtons("Services", _selectedNav, 2),
                   _navTextButtons("Jobs", _selectedNav, 3),
-                  Image.asset('assets/images/filter.png'),
+                  GestureDetector(
+                    onTap: (){
+                      customAlertDialog(context);
+                    },
+                    child: Image.asset('assets/images/filter.png')),
                 ],),
               ),
               
         SizedBox(
           height: 278,
           width: MediaQuery.of(context).size.width,
-          child: ListView.builder(
+          child: ListView(
             scrollDirection: Axis.horizontal,
-            itemCount: 2,
-            itemBuilder: (context, pos){
-            return _productCards();
-          }),
+            children: [
+              _productCards("food_collage.png"),
+              _productCards("cuishon.png"),
+            ],
+            ),
         ),
       ],
     );
   }
 
-  Widget _productCards() {
+  
+
+  
+
+  Widget _productCards(String imgUrl) {
     return Padding(
             padding: EdgeInsets.only(left: 10),
             child: SizedBox(
@@ -83,6 +93,8 @@ class _ServiceListingState extends State<ServiceListing> {
                                 borderRadius: BorderRadius.horizontal(left: Radius.circular(8))),
                                 child: Row(children: [
                                   SizedBox(width: 5),
+                                  Image.asset('assets/images/service_icon.png'),
+                                  
                                   serviceText('Service'),
                                 ],),
                               ),
@@ -91,7 +103,52 @@ class _ServiceListingState extends State<ServiceListing> {
                           )
                         ],),
                         ),
-                        Image.asset('assets/images/food_collage.png', height: 192, width: 204),
+                        SizedBox(
+                          height: 192,
+                          width: 204,
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/$imgUrl', height: 192, width: 204),
+                              Container(height: 192, width: 204,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.5),
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        prodNameText('Vegetables and Prawns'),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                          Image.asset('assets/images/location.png', width: 7, height: 7, color: Colors.white),
+                                          userIdText('Jamaica'),
+                                        ],)
+                                      ],
+                                    ),
+                                    Image.asset('assets/images/bookmark_bordered.png', height: 15, width: 13, color: Colors.white),
+                                    Image.asset('assets/images/back.png', height: 15, width: 15, color: Colors.white),
+                                    Image.asset('assets/images/menu_icon.png', height: 15, width: 15, color: Colors.white),
+                                  ],),
+                                  SizedBox(height: 10),
+                                ],
+                              ),
+                              ),
+                            ],
+                          )),
                         Container(height: 43,width: 204,
                         decoration: BoxDecoration(
                           boxShadow: [

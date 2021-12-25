@@ -35,6 +35,12 @@ Text discountText(String text, {Color color=Colors.white}){
     style: TextStyle(fontFamily: 'Roboto', fontSize: 4, fontWeight: FontWeight.w500, color: color),
   );
 }
+Text pageTitleText(String text, {Color color=Colors.white}){
+  return Text(
+    text,
+    style: TextStyle(fontFamily: 'WorkSans', fontSize: 20, fontWeight: FontWeight.w500, color: color),
+  );
+}
 Text textNavText(String text, {Color color=Colors.white}){
   return Text(
     text,

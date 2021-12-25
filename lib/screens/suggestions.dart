@@ -51,14 +51,22 @@ class _SuggestionsState extends State<Suggestions> {
               ),
               child: Column(
                 children: [
-                  Image.asset('assets/images/woman_icon.png'),
+                  Spacer(flex: 2),
+                  CircleAvatar(backgroundColor: darkPurple,
+                    radius: 33,
+                  child: Image.asset('assets/images/woman_icon.png', height: 65, width: 65),),
+                  // Image.asset('assets/images/woman_icon.png'),
+                  Spacer(flex: 2),
                   textNavText('Rose Koto', color: darkPurple),
+                  
                   prodNameText('smoothly store', color: grey),
+                  Spacer(flex: 1),
                   Container(width: 63, height: 23, decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),color: gold,
                           ),
                           child: Center(child: topNavText('Order', color: darkPurple),),
                           ),
+                  Spacer(flex: 1),
                 ],
               ),
               ),
@@ -69,42 +77,48 @@ class _SuggestionsState extends State<Suggestions> {
 
   SizedBox _suggestedListings(BuildContext context) {
     return SizedBox(height: 194,width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
+        child: ListView(
           scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          itemBuilder: (context, pos){
-          return Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Image.asset('assets/images/food_egg.png', width: 148, height: 129, fit: BoxFit.cover)),
-                Container(
-                  height: 65,
-                  width: 148,decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        prodNameText('Men\'s Clothes', color: darkPurple),
-                        prodNameText('Smoothly store', color: grey),
-                        numLeftText('25 Orders left', color: grey),
-                      ],
-                    ), 
-                    Image.asset('assets/images/bookmark_bordered.png', height:14, width: 11),
-                  ],),
-                  ),
-              ],
-            ),
-          );
-        }),
+          children: [
+            _suggestedListingCard('food_egg'),
+            _suggestedListingCard('food_soup'),
+            _suggestedListingCard('food_bread'),
+          ],
+        ),
       );
+  }
+
+  Padding _suggestedListingCard(String imgUrl) {
+    return Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                child: Image.asset('assets/images/$imgUrl.png', width: 148, height: 129, fit: BoxFit.cover)),
+              Container(
+                height: 65,
+                width: 148,decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      prodNameText('Men\'s Clothes', color: darkPurple),
+                      prodNameText('Smoothly store', color: grey),
+                      numLeftText('25 Orders left', color: grey),
+                    ],
+                  ), 
+                  Image.asset('assets/images/bookmark_bordered.png', height:14, width: 11),
+                ],),
+                ),
+            ],
+          ),
+        );
   }
 }

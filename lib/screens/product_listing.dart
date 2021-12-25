@@ -58,7 +58,8 @@ class ProductListing extends StatelessWidget {
                                 borderRadius: BorderRadius.horizontal(left: Radius.circular(8))),
                                 child: Row(children: [
                                   SizedBox(width: 5),
-                                  serviceText('Service'),
+                                  Image.asset('assets/images/product_icon.png'),
+                                  serviceText('Product'),
                                 ],),
                               ),
                               businessPageText('Private Seller', color: grey),
@@ -66,8 +67,52 @@ class ProductListing extends StatelessWidget {
                           )
                         ],),
                         ),
-                        Image.asset('assets/images/shoes.png', height: 192, width: 204,
-                        fit: BoxFit.cover),
+                        SizedBox(
+                           height: 192, width: 204,
+                          child: Stack(
+                            children: [
+                              Image.asset('assets/images/shoes.png', height: 192, width: 204,
+                              fit: BoxFit.cover),
+                              Container(height: 192, width: 204,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.5),
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        prodNameText('Vegetables and Prawns'),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                          Image.asset('assets/images/location.png', width: 7, height: 7, color: Colors.white),
+                                          userIdText('Jamaica'),
+                                        ],)
+                                      ],
+                                    ),
+                                    Image.asset('assets/images/bookmark_bordered.png', height: 15, width: 13, color: Colors.white),
+                                    Image.asset('assets/images/back.png', height: 15, width: 15, color: Colors.white),
+                                    Image.asset('assets/images/menu_icon.png', height: 15, width: 15, color: Colors.white),
+                                  ],),
+                                  SizedBox(height: 10),
+                                ],
+                              ),),
+                            ],
+                          ),
+                        ),
                         Container(height: 43,width: 204,
                         decoration: BoxDecoration(
                           boxShadow: [
